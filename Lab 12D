@@ -1,0 +1,13 @@
+En iterativ metod  x_{n+1} = g(x_n)  för att lösa en ekvation  f(x) = 0  sägs ha kvadratisk konvergens mot en lösning  x^*  om det finns en konstant  C > 0  sådan att
+
+
+\lim_{n \to \infty} \frac{|x_{n+1} - x^|}{|x_n - x^|^2} = C.
+
+
+Detta innebär att felet  |x_n - x^*|  minskar ungefär kvadratiskt för varje iteration när  n  är tillräckligt stort, dvs. om felet i en iteration är  \varepsilon_n , så gäller
+
+
+\varepsilon_{n+1} \approx C \varepsilon_n^2.
+
+
+Kvadratisk konvergens innebär en mycket snabb konvergens när felet blir litet, eftersom antalet korrekta decimaler ungefär fördubblas i varje steg.

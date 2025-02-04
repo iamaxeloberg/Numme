@@ -1,0 +1,33 @@
+% funktionen f(x) och dess derivata f'(x)
+f = @(x) 61*x - ((x.^2 + x + 0.03) ./ (3*x + 1)).^7 - 20*x.*exp(-x);
+df = @(x) 61 - 7 * ((x.^2 + x + 0.03).^(6) .* (2*x + 1)) ./ ((3*x + 1).^(7)) ...
+         - 20*exp(-x) + 20*x.*exp(-x);  % Derivata efter kedjeregel
+
+% Newtons metod
+tol = 1e-10; % Tolerans för konvergens
+max_iter = 100; % max antal iterationer
+
+% Funktion för Newton
+newton = @(x0) newton_method(f, df, x0, tol, max_iter);
+
+% startvärden
+x_min_root = newton(0.1); % minsta roten
+x_max_root = newton(7);   % största roten
+
+% resultat
+fprintf('Minsta positiva roten: x = %.10f\n', x_min_root);
+fprintf('Största positiva roten: x = %.10f\n', x_max_root);
+
+% Newtons metod implementerad som funktion
+function root = newton_method(f, df, x0, tol, max_iter)
+    x = x0;
+    for i = 1:max_iter
+        x_new = x - f(x) / df(x);  % Newtons steg
+        if abs(x_new - x) < tol
+            root = x_new;
+            return;
+        end
+        x = x_new;
+    end
+    error('Newtons metod konvergerade inte!');
+end
